@@ -136,3 +136,4 @@ D:\Workspace\Web\BackEnd\C#\Practice\learn_restfull_api\api\bin\Debug\net8.0\run
 D:\Workspace\Web\BackEnd\C#\Practice\learn_restfull_api\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 D:\Workspace\Web\BackEnd\C#\Practice\learn_restfull_api\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 D:\Workspace\Web\BackEnd\C#\Practice\learn_restfull_api\api\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\Workspace\Web\BackEnd\C#\Practice\learn_restfull_api\api\obj\Debug\net8.0\api.sourcelink.json
