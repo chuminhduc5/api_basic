@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Interfaces;
+using api.Mappers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controller
@@ -23,7 +24,24 @@ namespace api.Controller
         public async Task<IActionResult> GetAll()
         {
             var comments = await _commentRepo.GetAllAsync();
-            return Ok(comments);
+            
+            var commentDto = comments.Select(s => s.ToCommentDto());
+
+            return Ok(commentDto);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            var comment = await _commentRepo.GetByIdAsync(id);
+
+            // Check null 
+            if(comment == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(comment.ToCommentDto());
         }
     }
 }

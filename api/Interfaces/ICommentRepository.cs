@@ -10,5 +10,7 @@ namespace api.Interfaces
     {
         // Thêm nhiệm vụ
         Task<List<Comment>> GetAllAsync();
+
+        Task<Comment?> GetByIdAsync(int id);
     }
 }
