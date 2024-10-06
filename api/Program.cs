@@ -25,7 +25,7 @@ builder.Services.AddDbContext<ApplicationDBContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddIdentity<AppUser, IdentityRole>(options => 
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     // Yều cầu mật khẩu bắt buộc
     options.Password.RequireDigit = true;
@@ -33,7 +33,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     options.Password.RequireLowercase = true;
     // Yêu cầu mật khẩu chữ hoa
     options.Password.RequireUppercase = true;
-    // Yêu cầu nhập số
+     // Yêu cầu nhập số
     options.Password.RequireNonAlphanumeric = true;
     // Mật khẩu có độ dài bắt buộc
     options.Password.RequiredLength = 12;
@@ -42,15 +42,16 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDBContext>();
 
 // Thêm khung thực thể xác thực người dùng
-builder.Services.AddAuthentication(options => 
+builder.Services.AddAuthentication(options =>
 {
-    options.DefaultAuthenticateScheme = 
-    options.DefaultChallengeScheme = 
+    options.DefaultAuthenticateScheme =
+    options.DefaultChallengeScheme =
     options.DefaultForbidScheme =
-    options.DefaultScheme = 
+    options.DefaultScheme =
     options.DefaultSignInScheme =
     options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options => {
+}).AddJwtBearer(options =>
+{
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
@@ -59,7 +60,7 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = builder.Configuration["JWT:Audience"],
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
-            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWt: SigningKey"])
+            System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])
         )
     };
 });
