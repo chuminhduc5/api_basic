@@ -1,4 +1,5 @@
 using api.Dtos.Account;
+using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,12 @@ namespace api.Controller;
 public class AccountController : ControllerBase
 {
     private readonly UserManager<AppUser> _userManager;
-
+    private readonly ITokenService _tokenService;
     // Trình quản lý người dùng
-    public AccountController(UserManager<AppUser> userManger)
+    public AccountController(UserManager<AppUser> userManger, ITokenService tokenService)
     {
         _userManager = userManger;
+        _tokenService = tokenService;
     }
 
     [HttpPost("register")]
@@ -38,7 +40,14 @@ public class AccountController : ControllerBase
                 var roleResult = await _userManager.AddToRoleAsync(appUser, "User");
                 if (roleResult.Succeeded)
                 {
-                    return Ok("User Create");
+                    return Ok(
+                        new NewUserDto
+                        {
+                            UserName = appUser.UserName,
+                            Email = appUser.Email,
+                            Token = _tokenService.CreateToken(appUser)
+                        }
+                    );
                 }
                 else{
                     return StatusCode(500, roleResult.Errors);
