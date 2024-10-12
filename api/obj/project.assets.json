@@ -4709,11 +4709,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Workspace\\Web\\BackEnd\\C#\\Practice\\learn_restfull_api\\api\\api.csproj",
+      "projectUniqueName": "D:\\Workspace\\Web\\BackEnd\\C#\\Practice\\learn_restfull_api\\api\\api.csproj",
       "projectName": "api",
-      "projectPath": "d:\\Workspace\\Web\\BackEnd\\C#\\Practice\\learn_restfull_api\\api\\api.csproj",
+      "projectPath": "D:\\Workspace\\Web\\BackEnd\\C#\\Practice\\learn_restfull_api\\api\\api.csproj",
       "packagesPath": "C:\\Users\\chumi\\.nuget\\packages\\",
-      "outputPath": "d:\\Workspace\\Web\\BackEnd\\C#\\Practice\\learn_restfull_api\\api\\obj\\",
+      "outputPath": "D:\\Workspace\\Web\\BackEnd\\C#\\Practice\\learn_restfull_api\\api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\chumi\\AppData\\Roaming\\NuGet\\NuGet.Config",
