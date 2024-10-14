@@ -89,16 +89,20 @@ namespace api.Controller
         [HttpDelete("delete-stock/{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            // Kiểm tra người dùng có nhập hay không và trả về kêt quả
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            // Gọi đến hành động xóa bên IStockRepository
             var stockModel = await _stockRepo.DeleteAsync(id);
 
+            // Nếu hành động này không hợp lệ => xóa không thành công
             if (stockModel == null)
             {
                 return NotFound();
             }
 
+            // Hành động hợp lệ => Xóa thành công
             return NoContent();
         }
     }

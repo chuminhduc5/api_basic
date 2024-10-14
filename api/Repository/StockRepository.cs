@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository
 {
+    // StockRepository kế thừa (implement) từ IStockRepository
     public class StockRepository : IStockRepository
     {
         private readonly ApplicationDBContext _context;
@@ -27,17 +28,23 @@ namespace api.Repository
             return stockModel;
         }
 
+        // Ghi đè phương thức xóa IStockRepository
         public async Task<Stock?> DeleteAsync(int id)
         {
+            // Kiểm tra id người dùng nhập vào
             var stockModel = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
 
+            // Nếu id = null => không trả về kết quả
             if(stockModel == null)
             {
                 return null;
             }
 
+            // Nếu id hợp lệ => tiến hàng xóa
             _context.Stocks.Remove(stockModel);
+            // Sau khi xóa => tiến hành lưu lại kết quả và câp nhật ở db
             await _context.SaveChangesAsync();
+            // Trả lại kết quả sau khi xóa
             return stockModel;
         }
 
