@@ -72,6 +72,7 @@ namespace api.Controller
         //[Authorize]
         public async Task<IActionResult> DeletePortfolio(string symbol)
         {
+            // Lấy ra tên người dùng
             var username = User.GetUsername();
             var appUser = await _userManger.FindByEmailAsync(username);
 
