@@ -26,6 +26,7 @@ namespace api.Repository
 
         public async Task<Portfolio> DeletePortfolio(AppUser appUser, string symbol)
         {
+            // Truy vấn tìm kiếm bản ghi trong bảng
             var portfolioModel = await _context.Portfolios.FirstOrDefaultAsync(x => x.AppUserId == appUser.Id && x.Stock.Symbol.ToLower() == symbol.ToLower());
 
             if(portfolioModel == null)
