@@ -14,11 +14,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Controller
 {
-    [Route("api/v{v}/Stock")]
+    [Route("api/v{v}/Stock")] // Đặt tên đường dẫn API
     [ApiController]
     public class StockController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext _context; 
         private readonly IStockRepository _stockRepo;
         public StockController(ApplicationDBContext context, IStockRepository stockRepo)
         {
@@ -35,9 +35,9 @@ namespace api.Controller
 
             var stocks = await _stockRepo.GetAllAsync(query);
             
-            var stockDto = stocks.Select(s => s.ToStockDto());
+            var stockDto = stocks.Select(s => s.ToStockDto()).ToList();
 
-            return Ok(stocks);
+            return Ok(stockDto);
         }
 
         [HttpGet("get-by-id/{id:int}")]
@@ -64,10 +64,8 @@ namespace api.Controller
                 return BadRequest(ModelState);
 
             var stockModel = stockDto.ToStockFromCreateDto();
-            // await _context.Stocks.AddAsync(stockModel);
-            // await _context.SaveChangesAsync();
             await _stockRepo.CreateAsync(stockModel);
-            return CreatedAtAction(nameof(GetById), new { id = stockModel.Id}, stockModel.ToStockDto());
+            return CreatedAtAction(nameof(GetById), new { v = 1, id = stockModel.Id}, stockModel.ToStockDto());
         }
 
         [HttpPut("update-stock/{id:int}")]

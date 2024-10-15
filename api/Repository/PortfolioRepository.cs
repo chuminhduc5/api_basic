@@ -24,6 +24,10 @@ namespace api.Repository
             return portfolio;
         }
 
+        /* Phương thức DeletePortfolio trả về 1 Task mà kết quả của nó là 1 đối tượng Portfolio
+            Phương thức nhận vào 2 tham số: 
+            - AppUser appUser: 
+        */
         public async Task<Portfolio> DeletePortfolio(AppUser appUser, string symbol)
         {
             // Truy vấn tìm kiếm bản ghi trong bảng
